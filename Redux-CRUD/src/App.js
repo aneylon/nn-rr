@@ -3,6 +3,7 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, deleteUser, updateUser } from "./features/users";
 import { useState } from "react";
+import { PokeExample } from "./features/RTK-Example/PokeExample";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div className="App">
+      <PokeExample />
       <div id="addUser">
         <input
           type="text"
