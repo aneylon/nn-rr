@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-export const Stuff = () => {
+import { EventList } from "./EventList";
+export const Events = () => {
   // let name = "dude";
   const [name, setName] = useState("dude");
   const [showEvents, setShowEvents] = useState(true);
@@ -38,23 +39,7 @@ export const Stuff = () => {
           <button onClick={() => setShowEvents(true)}>show events</button>
         )}
       </div>
-      {showEvents &&
-        events.map((item, index) => {
-          return (
-            <React.Fragment key={item.id}>
-              <h2>
-                {index + 1} : {item.title}
-              </h2>
-              <button
-                onClick={() => {
-                  deleteEvent(item.id);
-                }}
-              >
-                delete event
-              </button>
-            </React.Fragment>
-          );
-        })}
+      {showEvents && <EventList events={events} deleteEvent={deleteEvent} />}
     </>
   );
 };
