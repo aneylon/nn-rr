@@ -15,9 +15,20 @@ export const NewEventsForm = () => {
     setEventDate("");
     setEventTitle("");
   };
+  const handleSubmit = (event) => {
+    console.log("submit!", { event });
+    event.preventDefault();
+    const newEvent = {
+      title: eventTitle,
+      date: eventDate,
+      id: Math.floor(Math.random() * 10000),
+    };
+    console.log(newEvent);
+    resetForm();
+  };
   return (
     <div>
-      <form className="new-event-form">
+      <form className="new-event-form" onSubmit={handleSubmit}>
         <label htmlFor="event-title">Event Title:</label>
         <input
           id="event-title"
