@@ -1,0 +1,8 @@
+{
+  "trips": [
+    { "title": "one", "price": "$111" },
+    { "title": "two", "price": "$222" },
+    { "title": "three", "price": "$333" },
+    { "title": "four", "price": "$444" }
+  ]
+}

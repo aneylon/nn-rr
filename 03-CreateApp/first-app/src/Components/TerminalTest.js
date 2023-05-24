@@ -7,7 +7,7 @@ const TerminalTest = () => {
 
     let mapped = tempValue.map((letter) => {
       console.log(letter);
-      if (letter == "\n") {
+      if (letter === "\n") {
         console.log(letter);
         return "<br />";
       }

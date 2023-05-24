@@ -49,7 +49,7 @@ function App() {
   };
   return (
     <div className="App">
-      <TerminalTest />
+      {/* <TerminalTest /> */}
 
       <Title title="Events" />
       <div>

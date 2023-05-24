@@ -10,6 +10,9 @@ export const EventList = ({ events, deleteEvent }) => {
             <h2>
               {index + 1} : {item.title}
             </h2>
+            <p>
+              {item.date} : {item.location}
+            </p>
             <button
               onClick={() => {
                 deleteEvent(item.id);

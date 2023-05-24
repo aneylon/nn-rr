@@ -30,7 +30,7 @@ body {
     rgba(18, 16, 16, 0) 50%,
     rgba(0, 0, 0, 0.25) 50%
   );
-  background-size: 100% 8px;
+  background-size: 100% 3px;
   z-index: 2;
   pointer-events: none;
 }
@@ -47,7 +47,7 @@ body {
   opacity: 0.1;
   position: absolute;
   bottom: 100%;
-  animation: scanline 10s linear infinite;
+  animation: scanline 8s linear infinite;
 }
 @keyframes textShadow {
   0% {
@@ -58,8 +58,8 @@ body {
     text-shadow: 2.7928974010788217px 0 1px rgba(0, 30, 255, 0.5),
       -2.7928974010788217px 0 1px rgba(255, 0, 80, 0.3), 0 0 3px;
   }
-  /** etc */
 }
+
 @keyframes scanline {
   0% {
     bottom: 100%;
