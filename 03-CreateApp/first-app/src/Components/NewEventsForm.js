@@ -1,8 +1,10 @@
 import "./NewEventsForm.css";
-import { useState } from "react";
-export const NewEventsForm = () => {
+import { useState, useRef } from "react";
+export const NewEventsForm = ({ addEvent }) => {
   const [eventTitle, setEventTitle] = useState("");
   const [eventDate, setEventDate] = useState("");
+  const refTitle = useRef();
+  const refDate = useRef();
   const updateEventTitle = (event) => {
     console.info(event.target.value);
     setEventTitle(event.target.value);
@@ -12,18 +14,28 @@ export const NewEventsForm = () => {
     setEventDate(event.target.value);
   };
   const resetForm = () => {
-    setEventDate("");
-    setEventTitle("");
+    // setEventDate("");
+    // setEventTitle("");
+    refTitle.current.value = "";
+    refDate.current.value = "";
   };
   const handleSubmit = (event) => {
-    console.log("submit!", { event });
-    event.preventDefault();
-    const newEvent = {
-      title: eventTitle,
-      date: eventDate,
+    console.log({ refTitle, refDate });
+    let refEvent = {
+      title: refTitle.current.value,
+      date: refDate.current.value,
       id: Math.floor(Math.random() * 10000),
     };
-    console.log(newEvent);
+    // console.log("submit!", { event });
+    event.preventDefault();
+    // const newEvent = {
+    //   title: eventTitle,
+    //   date: eventDate,
+    //   id: Math.floor(Math.random() * 10000),
+    // };
+    // console.log(newEvent);
+    // addEvent(newEvent);
+    addEvent(refEvent);
     resetForm();
   };
   return (
@@ -34,10 +46,16 @@ export const NewEventsForm = () => {
           id="event-title"
           value={eventTitle}
           onChange={updateEventTitle}
+          ref={refTitle}
         />
         <label>
           <span>Event Date:</span>
-          <input type="date" value={eventDate} onChange={updateEventDate} />
+          <input
+            type="date"
+            value={eventDate}
+            onChange={updateEventDate}
+            ref={refDate}
+          />
         </label>
         <button>Submit</button>
         <p>
