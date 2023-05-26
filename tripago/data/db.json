@@ -1,8 +1,8 @@
 {
   "trips": [
-    { "title": "one", "price": "$111" },
-    { "title": "two", "price": "$222" },
-    { "title": "three", "price": "$333" },
-    { "title": "four", "price": "$444" }
+    { "id": 1, "title": "one", "price": "$111", "loc": "somewhere" },
+    { "id": 2, "title": "two", "price": "$222", "loc": "somewhere" },
+    { "id": 3, "title": "three", "price": "$333", "loc": "somewhere" },
+    { "id": 4, "title": "four", "price": "$444", "loc": "nowhere" }
   ]
 }

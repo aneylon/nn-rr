@@ -1,24 +1,48 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import "./TripList.css";
 export default function TripList() {
   const [trips, setTrips] = useState([]);
+  const [url, setUrl] = useState("http://localhost:3700/trips");
+  const fetchTrips = useCallback(async () => {
+    const response = await fetch(url);
+    const json = await response.json();
+    setTrips(json);
+  }, [url]);
   useEffect(() => {
-    getTripList();
-  }, []);
-  function getTripList() {
-    return fetch("http://localhost:3700/trips")
-      .then((response) => {
-        if (response.ok) return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setTrips(data);
-      })
-      .catch((error) => console.error);
-  }
+    fetchTrips();
+    // fetch(url)
+    //   .then((response) => {
+    //     if (response.ok) return response.json();
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     setTrips(data);
+    //   })
+    //   .catch((error) => console.error(error));
+  }, [/*url,*/ fetchTrips]);
   return (
-    <div>
+    <div className="trip-list">
       <h1>Tip List</h1>
-      <p>{trips.length}</p>
+      <ul>
+        {trips.map((trip) => {
+          return (
+            <li key={trip.id}>
+              <h3>{trip.title}</h3>
+              <p>{trip.price}</p>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="filters">
+        <button
+          onClick={() => setUrl("http://localhost:3700/trips?loc=somewhere")}
+        >
+          somewhere
+        </button>
+        <button onClick={() => setUrl("http://localhost:3700/trips")}>
+          everywhere
+        </button>
+      </div>
     </div>
   );
 }
