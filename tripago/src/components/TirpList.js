@@ -3,7 +3,7 @@ import { useFetch } from "../hooks/useFetch";
 import "./TripList.css";
 export default function TripList() {
   const [trips, setTrips] = useState([]);
-  const [url, setUrl] = useState("http://localhost:3700/trips1S");
+  const [url, setUrl] = useState("http://localhost:3700/trips");
   const { data, isPending, error } = useFetch(url);
   // const fetchTrips = useCallback(async () => {
   //   const response = await fetch(url);

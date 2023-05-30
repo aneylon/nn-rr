@@ -1,10 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 import TripList from "./components/TirpList";
 
 function App() {
+  const [showTrips, setShowTrips] = useState(true);
   return (
     <div className="App">
-      <TripList />
+      <button
+        onClick={() => {
+          setShowTrips(!showTrips);
+        }}
+      >
+        Show Trips
+      </button>
+      {showTrips && <TripList />}
     </div>
   );
 }
