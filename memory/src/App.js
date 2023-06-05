@@ -2,12 +2,12 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import SingleCard from "./components/SingleCard";
 const cardImages = [
-  { src: "/img/helmet-1.png" },
-  { src: "/img/potion-1.png" },
-  { src: "/img/ring-1.png" },
-  { src: "/img/scroll-1.png" },
-  { src: "/img/shield-1.png" },
-  { src: "/img/sword-1.png" },
+  { matched: false, src: "/img/helmet-1.png" },
+  { matched: false, src: "/img/potion-1.png" },
+  { matched: false, src: "/img/ring-1.png" },
+  { matched: false, src: "/img/scroll-1.png" },
+  { matched: false, src: "/img/shield-1.png" },
+  { matched: false, src: "/img/sword-1.png" },
 ];
 
 function App() {
@@ -35,6 +35,15 @@ function App() {
       if (choiceOne.src === choiceTwo.src) {
         console.log(choiceOne.src, choiceTwo.src);
         console.log("SAME");
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceOne.src) {
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
         resetTurn();
       } else {
         console.log("No match");
