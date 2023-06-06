@@ -3,31 +3,57 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <nav>
-          <h1>Multi Page</h1>
+          <h1>My Articles</h1>
+          {/* <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link> */}
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </nav>
-        {/* <Route path="/" component={Home} /> 
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
-        */}
+
         <Switch>
-          <Route path="/" exact>
+          <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
           <Route path="/contact">
             <Contact />
           </Route>
-          <Route path="/about" component={About} />
         </Switch>
       </BrowserRouter>
     </div>
   );
+  // return (
+  //   <div className="App">
+  //     <BrowserRouter>
+  //       <nav>
+  //         <h1>Multi Page</h1>
+  //         <NavLink exact to="/">
+  //           Home
+  //         </NavLink>
+  //         <NavLink to="/about">About</NavLink>
+  //         <NavLink to="/contact">Contact</NavLink>
+  //       </nav>
+  //       <Switch>
+  //         <Route exact path="/" component={Home} />
+  //         <Route path="/about" component={About} />
+  //         <Route path="/contact" component={Contact} />
+  //       </Switch>
+  //     </BrowserRouter>
+  //   </div>
+  // );
 }
 
 export default App;
