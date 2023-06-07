@@ -1,5 +1,6 @@
 import "./App.css";
 import About from "./pages/About";
+import Article from "./pages/Article";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/contact">
             <Contact />
           </Route>
+          <Route path="/article/" component={Article} />
         </Switch>
       </BrowserRouter>
     </div>
