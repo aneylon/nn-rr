@@ -4,7 +4,13 @@ import Article from "./pages/Article";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  NavLink,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 function App() {
   return (
@@ -33,6 +39,7 @@ function App() {
             <Contact />
           </Route>
           <Route path="/article/:id" component={Article} />
+          <Redirect from="*" to="/" />
         </Switch>
       </BrowserRouter>
     </div>
