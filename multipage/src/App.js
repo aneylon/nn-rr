@@ -32,7 +32,7 @@ function App() {
           <Route path="/contact">
             <Contact />
           </Route>
-          <Route path="/article/" component={Article} />
+          <Route path="/article/:id" component={Article} />
         </Switch>
       </BrowserRouter>
     </div>
