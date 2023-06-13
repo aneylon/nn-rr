@@ -6,8 +6,7 @@ export default function SearchaBar() {
   const history = useHistory();
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("searching for", term);
-    history.push(`/search?query=${term}`);
+    history.push(`/search?word=${term}`);
   };
   return (
     <div className="searchbar">
