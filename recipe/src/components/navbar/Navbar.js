@@ -1,18 +1,18 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import SearchaBar from "../SearchBar/SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import { useTheme } from "../../hooks/useTheme";
 
 export default function Navbar() {
-  const { color } = useTheme();
+  const { color, changeColor } = useTheme();
   return (
     <div className="navbar" style={{ background: color }}>
-      <nav>
+      <nav onClick={() => changeColor("goldenrod")}>
         <Link to="/" className="brand">
           <h1>All the things</h1>
         </Link>
-        <SearchaBar />
+        <SearchBar />
         <Link to="/create">
           <h3>Create</h3>
         </Link>
