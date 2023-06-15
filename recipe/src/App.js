@@ -1,7 +1,7 @@
 import "./App.css";
 import {
   BrowserRouter,
-  NavLink,
+  // NavLink,
   Redirect,
   Route,
   Switch,
@@ -11,12 +11,14 @@ import Home from "./pages/home/Home";
 import Search from "./pages/search/Search";
 import Recipe from "./pages/recipe/Recipe";
 import Create from "./pages/create/Create";
+import ThemeSelector from "./components/ThemeSelector/ThemeSelector";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        <ThemeSelector />
         {/* <nav>
           <NavLink exact to="/">
             Home

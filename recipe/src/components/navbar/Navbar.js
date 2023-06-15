@@ -5,10 +5,10 @@ import SearchBar from "../SearchBar/SearchBar";
 import { useTheme } from "../../hooks/useTheme";
 
 export default function Navbar() {
-  const { color, changeColor } = useTheme();
+  const { color } = useTheme();
   return (
     <div className="navbar" style={{ background: color }}>
-      <nav onClick={() => changeColor("goldenrod")}>
+      <nav>
         <Link to="/" className="brand">
           <h1>All the things</h1>
         </Link>
