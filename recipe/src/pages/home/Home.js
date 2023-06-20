@@ -10,10 +10,10 @@ export default function Home() {
   const [error, setError] = useState(false);
   useEffect(() => {
     setIsPending(true);
-    projectFirestore
-      .collection("recipes")
-      .get()
-      .then((snapshot) => {
+    const unsub = projectFirestore.collection("recipes").onSnapshot(
+      (snapshot) => {
+        // .get()
+        // .then((snapshot) => {
         console.log(snapshot);
         if (snapshot.empty) {
           setError("Nothing to load");
@@ -27,10 +27,18 @@ export default function Home() {
           setData(results);
           setIsPending(false);
         }
-      })
-      .catch((error) => {
+      },
+      (error) => {
         setError(error.message);
-      });
+        setIsPending(false);
+      }
+    );
+    // .catch((error) => {
+    //   setError(error.message);
+    // });
+    return () => {
+      unsub();
+    };
   }, []);
   return (
     <div className="home">
