@@ -15,14 +15,19 @@ export default function Recipe() {
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  const handleUpdate = () => {
+    projectFirestore.collection("recipes").doc(id).update({
+      title: "something blu",
+    });
+  };
   useEffect(() => {
     setIsLoading(true);
-    projectFirestore
+    const unsub = projectFirestore
       .collection("recipes")
       .doc(id)
-      .get()
-      .then((doc) => {
+      // .get()
+      // .then((doc) => {
+      .onSnapshot((doc) => {
         console.log(doc);
         if (doc.exists) {
           setIsLoading(false);
@@ -32,6 +37,9 @@ export default function Recipe() {
           setError("Could not find data");
         }
       });
+    return () => {
+      unsub();
+    };
   }, [id]);
 
   return (
@@ -48,6 +56,7 @@ export default function Recipe() {
             ))}
           </ul>
           <p className="method">{recipe.method}</p>
+          <button onClick={handleUpdate}>Update</button>
         </>
       )}
     </div>
