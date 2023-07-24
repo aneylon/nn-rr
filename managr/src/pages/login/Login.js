@@ -8,6 +8,7 @@ export default function Login() {
   const submitLogin = (e) => {
     e.preventDefault();
     console.log("log it in", email, password);
+    login(email, password);
   };
   return (
     <form className="auth-form" onSubmit={submitLogin}>
