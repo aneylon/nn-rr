@@ -10,6 +10,7 @@ import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import Sidebar from "./components/sidebar/Sidebar";
 import { useAuthContext } from "./hooks/useAuthContext";
+import OnlineUsers from "./components/OnlineUsers/OnlineUsers";
 
 function App() {
   const { authIsReady, user } = useAuthContext();
@@ -48,6 +49,7 @@ function App() {
               </Route>
             </Switch>
           </div>
+          {user && <OnlineUsers />}
         </BrowserRouter>
       )}
     </div>
