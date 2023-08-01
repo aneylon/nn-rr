@@ -1,6 +1,13 @@
 import { useState } from "react";
-
+import Select from "react-select";
 import "./Create.css";
+
+const categories = [
+  { value: "development", label: "Development" },
+  { value: "design", label: "Design" },
+  { value: "sales", label: "Sales" },
+  { value: "marketing", label: "Marketing" },
+];
 
 export default function Create() {
   const [name, setName] = useState("");
@@ -11,7 +18,7 @@ export default function Create() {
 
   const submitNewProject = (e) => {
     e.preventDefault();
-    console.info("Send it!", { name, details, dueDate });
+    console.info("Send it!", { name, details, dueDate, category });
   };
   return (
     <div className="create-form">
@@ -46,6 +53,12 @@ export default function Create() {
         </label>
         <label>
           <span>Project Category : </span>
+          <Select
+            options={categories}
+            onChange={(option) => {
+              setCategory(option);
+            }}
+          />
         </label>
         <label>
           <span>Assign to : </span>
