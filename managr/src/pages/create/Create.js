@@ -18,10 +18,20 @@ export default function Create() {
   const [assignedUsers, setAssignedUsers] = useState("");
   const { documents } = useCollection("users");
   const [users, setUsers] = useState([]);
+  const [formError, setFormError] = useState(null);
 
   console.log(documents);
   const submitNewProject = (e) => {
     e.preventDefault();
+    setFormError(null);
+    if (!category) {
+      setFormError("Please select a project category.");
+      return;
+    }
+    if (assignedUsers.length < 1) {
+      setFormError("Please select at least one user.");
+      return;
+    }
     console.info("Send it!", {
       name,
       details,
@@ -90,6 +100,7 @@ export default function Create() {
           />
         </label>
         <button className="btn">Add Project</button>
+        {formError && <p className="error">{formError}</p>}
       </form>
     </div>
   );
