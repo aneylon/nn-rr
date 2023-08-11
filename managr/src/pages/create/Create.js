@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import "./Create.css";
 import { useCollection } from "../../hooks/useCollection";
+import { timestamp } from "../../firebase/config";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -17,10 +19,10 @@ export default function Create() {
   const [category, setCategory] = useState("");
   const [assignedUsers, setAssignedUsers] = useState("");
   const { documents } = useCollection("users");
+  const { user } = useAuthContext();
   const [users, setUsers] = useState([]);
   const [formError, setFormError] = useState(null);
 
-  console.log(documents);
   const submitNewProject = (e) => {
     e.preventDefault();
     setFormError(null);
@@ -32,13 +34,32 @@ export default function Create() {
       setFormError("Please select at least one user.");
       return;
     }
-    console.info("Send it!", {
+
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid,
+    };
+
+    const assignedUsersList = assignedUsers.map((user) => {
+      return {
+        displayName: user.value.displayName,
+        photoURL: user.value.photoURL,
+        id: user.value.id,
+      };
+    });
+
+    const newProject = {
       name,
       details,
-      dueDate,
-      category,
-      assignedUsers,
-    });
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      category: category.value,
+      comments: [],
+      createdBy,
+      assignedUsersList,
+    };
+
+    console.info("Send it!", newProject);
   };
 
   useEffect(() => {
