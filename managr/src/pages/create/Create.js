@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Select from "react-select";
 import "./Create.css";
 import { useCollection } from "../../hooks/useCollection";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useFirestore } from "../../hooks/useFirestore";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -13,17 +15,19 @@ const categories = [
 ];
 
 export default function Create() {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState("");
   const [assignedUsers, setAssignedUsers] = useState("");
-  const { documents } = useCollection("users");
   const { user } = useAuthContext();
   const [users, setUsers] = useState([]);
   const [formError, setFormError] = useState(null);
+  const { documents } = useCollection("users");
+  const { addDocument, response } = useFirestore("projects");
 
-  const submitNewProject = (e) => {
+  const submitNewProject = async (e) => {
     e.preventDefault();
     setFormError(null);
     if (!category) {
@@ -60,6 +64,11 @@ export default function Create() {
     };
 
     console.info("Send it!", newProject);
+    await addDocument(newProject);
+    if (!response.error) {
+      // go home.
+      history.push("/");
+    }
   };
 
   useEffect(() => {
