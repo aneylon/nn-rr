@@ -5,7 +5,6 @@ import "./Dashboard.css";
 
 export default function Dashboard() {
   const { documents, error } = useCollection("projects");
-  console.log(documents);
   return (
     <div>
       <h2 className="page-title">Dashboard</h2>
