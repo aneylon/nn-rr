@@ -7,7 +7,7 @@ export default function ProjectList({ projects }) {
     <div className="project-list">
       {projects.length === 0 && <p>No Projects yet</p>}
       {projects.map((proj) => (
-        <Link to={`/projects/${proj.id}`} key={proj.id}>
+        <Link to={`/project/${proj.id}`} key={proj.id}>
           <h4>{proj.name}</h4>
           <p>Due by : {proj.dueDate.toDate().toDateString()}</p>
           <div className="assigned-to">
